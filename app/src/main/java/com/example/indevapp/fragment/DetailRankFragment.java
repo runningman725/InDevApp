@@ -100,12 +100,6 @@ public class DetailRankFragment extends Fragment {
                     fragment = new DetailBodyrankFragment();
                 } else {
                     fragment = new DetailTogetherFragment();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("togetherList", bean.getTogetherList());//这里的values就是我们要传的值
-//                    fragment.setArguments(bundle);
-
-//                    EventBus.getDefault().post(new DetailRankEvent(togetherList));
-
                 }
 
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment).commit();

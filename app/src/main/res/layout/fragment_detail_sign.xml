@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sign"/>
-</LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/layout_calrender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <CalendarView
+                    android:id="@+id/calendarview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </CalendarView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout_todaycheck"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_below="@+id/layout_calrender"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:id="@+id/textview_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="금일 출석 체크"
+                    >
+                </TextView>
+                <Button
+                    android:id="@+id/button_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/textview_check"
+                    android:text="체크" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_todaycheck"
+                android:layout_centerInParent="true"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/check"
+                    >
+                </ImageView>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>
