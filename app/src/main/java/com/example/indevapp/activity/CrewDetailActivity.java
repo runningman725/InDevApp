@@ -1,6 +1,8 @@
 package com.example.indevapp.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -53,6 +55,17 @@ public class CrewDetailActivity extends AppCompatActivity {
     private TextView tv_sport;
     private TextView tv_time;
 
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            DetailTogetherBean togetherBean= (DetailTogetherBean) msg.getData().getSerializable("obj");
+
+            tv_time.setText(togetherBean.getStartDate()+"~"+togetherBean.getEndDate());
+
+            return false;
+        }
+    });
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,35 +77,6 @@ public class CrewDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("Together").document("1");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d("TAG", "DocumentSnapshot data: " + document.getData());
-                        HashMap map = (HashMap) document.getData();
-                        detailTogetherBean = new DetailTogetherBean();
-                        detailTogetherBean.setArea((String) map.get("area"));
-                        detailTogetherBean.setImage((String) map.get("image"));
-                        detailTogetherBean.setEndDate((String) map.get("endDate"));
-                        detailTogetherBean.setTogetherList((String) map.get("togetherList"));
-                        detailTogetherBean.setIntro((String) map.get("intro"));
-                        detailTogetherBean.setStartDate((String) map.get("startDate"));
-                        detailTogetherBean.setSportsList((String) map.get("sportsList"));
-
-                        Log.e("TAG", "onComplete: detailTogetherBean==" + detailTogetherBean.toString());
-
-                    } else {
-                        Log.d("TAG", "No such document");
-                    }
-                } else {
-                    Log.d("TAG", "get failed with ", task.getException());
-                }
-            }
-        });
 
         fragmentNotice = new DetailNoticeFragment();
         fragmentRank = new DetailRankFragment();
@@ -106,8 +90,6 @@ public class CrewDetailActivity extends AppCompatActivity {
         tv_name = findViewById(R.id.tv_name);
         tv_sport = findViewById(R.id.tv_sport);
         tv_time = findViewById(R.id.tv_time);
-
-//        tv_time.setText(detailTogetherBean.getStartDate()+"~"+detailTogetherBean.getEndDate());
 
         detailTabLayout = findViewById(R.id.detailTabLayout);
         detailViewPager = findViewById(R.id.detailViewPager);
@@ -166,5 +148,50 @@ public class CrewDetailActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                DocumentReference docRef = db.collection("Together").document("1");
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d("TAG", "DocumentSnapshot data: " + document.getData());
+                                HashMap map = (HashMap) document.getData();
+                                detailTogetherBean = new DetailTogetherBean();
+                                detailTogetherBean.setArea((String) map.get("area"));
+                                detailTogetherBean.setImage((String) map.get("image"));
+                                detailTogetherBean.setEndDate((String) map.get("endDate"));
+                                detailTogetherBean.setTogetherList((String) map.get("togetherList"));
+                                detailTogetherBean.setIntro((String) map.get("intro"));
+                                detailTogetherBean.setStartDate((String) map.get("startDate"));
+                                detailTogetherBean.setSportsList((String) map.get("sportsList"));
+
+                                Log.e("TAG", "onComplete: detailTogetherBean==" + detailTogetherBean.toString());
+                                Message msg = Message.obtain();
+                                Bundle b = new Bundle();
+                                b.putSerializable("obj", detailTogetherBean);
+                                msg.setData(b);
+                                handler.sendMessage(msg);
+                            } else {
+                                Log.d("TAG", "No such document");
+                            }
+                        } else {
+                            Log.d("TAG", "get failed with ", task.getException());
+                        }
+                    }
+                });
+
+            }
+        }).start();
+
     }
 }
