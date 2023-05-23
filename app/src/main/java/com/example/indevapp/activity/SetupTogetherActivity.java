@@ -160,7 +160,8 @@ public class SetupTogetherActivity extends AppCompatActivity {
             //together.setSportsList(lstSelectedWorkout.toArray(new String[lstSelectedWorkout.size()]));
             together.setWorkoutLevel(strSelectedWorkoutLevel);
             //together.setWorkoutLevel(lstSelectedWorkoutLevel.toArray(new String[lstSelectedWorkoutLevel.size()]));
-            together.setTogetherList("");
+            together.setTogetherList("00000001");
+            together.setUid("6");
 
             FirebaseFirestore firebaseFireStore = FirebaseFirestore.getInstance();
             firebaseFireStore.collection("Together").document("6").set(together);

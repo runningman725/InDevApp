@@ -31,8 +31,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CreatePostActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".activity.CreatePostActivity"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.indevapp.activity.CreatePostActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.PostActivity"
             android:launchMode="singleTask"/>
         <activity android:name=".activity.CrewDetailActivity"
