@@ -17,11 +17,10 @@
             android:layout_height="wrap_content"
             android:text="투게더"/>
 
-        <ImageView
-            android:id="@+id/img_togger"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_compat"
             android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:src="@drawable/icon_switch_gray"/>
+            android:layout_height="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
