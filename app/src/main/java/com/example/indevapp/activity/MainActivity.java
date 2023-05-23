@@ -1,4 +1,4 @@
-package com.example.indevapp;
+package com.example.indevapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.indevapp.R;
 import com.example.indevapp.navigation.OtherFragment;
 import com.example.indevapp.navigation.TogetherFrament;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

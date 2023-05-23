@@ -1,8 +1,10 @@
-package com.example.indevapp;
+package com.example.indevapp.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.indevapp.R;
 
 public class PostActivity extends AppCompatActivity {
 
