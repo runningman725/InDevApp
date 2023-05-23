@@ -17,12 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.indevapp.R;
+import com.example.indevapp.activity.CreatePostActivity;
+import com.example.indevapp.activity.SetupTogetherActivity;
 import com.example.indevapp.adapter.MyCrewAdapter;
 import com.example.indevapp.adapter.RecommendAdapter;
 import com.example.indevapp.bean.GoodsEntity;
 import com.example.indevapp.util.FilterDialog;
 import com.example.indevapp.util.GridSpacingItemDecoration;
 import com.example.indevapp.util.SpacesItemDecoration;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -44,6 +47,7 @@ public class TogetherFrament extends Fragment {
         view = inflater.inflate(R.layout.fragment_together,container,false);
         initData();
         initView();
+        initControl();
         return view;
     }
 
@@ -83,4 +87,14 @@ public class TogetherFrament extends Fragment {
         }
     }
 
+    private void initControl() {
+        FloatingActionButton btn_createInBodyTogether = (FloatingActionButton) view.findViewById(R.id.fab);
+        btn_createInBodyTogether.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SetupTogetherActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }

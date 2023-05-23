@@ -18,6 +18,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Check if you have this parameter enabled.
+            // Add if missing and rebuild your app to device.
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -38,6 +43,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation platform('com.google.firebase:firebase-bom:31.5.0')
+    implementation 'com.google.firebase:firebase-firestore'
 
     implementation 'com.github.bumptech.glide:glide:4.15.1'
 }
