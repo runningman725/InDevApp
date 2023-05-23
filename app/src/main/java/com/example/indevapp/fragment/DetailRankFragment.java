@@ -62,10 +62,10 @@ public class DetailRankFragment extends Fragment {
                 hideAllFragments(transaction);
                 if(isChecked){
                     fragment = new DetailBodyrankFragment();
-                    Toast.makeText(getContext(),"checked",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(),"checked",Toast.LENGTH_LONG).show();
                 } else {
                     fragment = new DetailTogetherFragment();
-                    Toast.makeText(getContext(),"not checked",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(),"not checked",Toast.LENGTH_LONG).show();
                 }
 
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment).commit();

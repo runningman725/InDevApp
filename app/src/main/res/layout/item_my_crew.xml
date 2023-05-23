@@ -3,13 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
-    <ImageView
-        android:id="@+id/img_crew"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:scaleType="centerCrop"/>
-
     <TextView
         android:id="@+id/tv_crew_name"
         android:layout_width="wrap_content"
@@ -18,4 +11,10 @@
         android:layout_margin="5dp"
         android:text="다이어트팀"/>
 
+    <ImageView
+        android:id="@+id/img_crew"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/tv_crew_name"/>
 </RelativeLayout>
