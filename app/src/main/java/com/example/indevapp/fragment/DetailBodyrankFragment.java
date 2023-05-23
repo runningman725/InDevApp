@@ -9,9 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.indevapp.Model.DetailTogetherBean;
 import com.example.indevapp.R;
 
 public class DetailBodyrankFragment extends Fragment {
+
 
     @Nullable
     @Override

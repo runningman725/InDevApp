@@ -1,10 +1,12 @@
 package com.example.indevapp.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,9 +15,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.indevapp.DetailRankEvent;
 import com.example.indevapp.Model.DetailTogetherBean;
 import com.example.indevapp.R;
 import com.example.indevapp.adapter.DetailPagerAdapter;
@@ -29,10 +34,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.greenrobot.eventbus.EventBus;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,14 +57,27 @@ public class CrewDetailActivity extends AppCompatActivity {
     private TextView tv_name;
     private TextView tv_sport;
     private TextView tv_time;
+    private ImageView img_profile;
+
+    private Context context;
 
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
             DetailTogetherBean togetherBean= (DetailTogetherBean) msg.getData().getSerializable("obj");
 
+            tv_name.setText("["+togetherBean.getArea()+"] "+togetherBean.getTitle());
             tv_time.setText(togetherBean.getStartDate()+"~"+togetherBean.getEndDate());
+            tv_sport.setText(togetherBean.getSportsList());
+            Glide.with(context)
+                    .load(togetherBean.getImage())
+                    .centerCrop()
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                    .into(img_profile);
 
+//            DetailRankFragment.newInstance(togetherBean);
+            Log.e("TAG", "qm handleMessage: eventbus send msg");
+            EventBus.getDefault().post(new DetailRankEvent(togetherBean.getTogetherList()));
             return false;
         }
     });
@@ -71,25 +87,32 @@ public class CrewDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crew_detail);
 
-        initData();
+        context = this;
+        initFragment();
         initView();
 
     }
 
-    private void initData() {
-
+    private void initFragment() {
         fragmentNotice = new DetailNoticeFragment();
         fragmentRank = new DetailRankFragment();
         fragmentSign = new DetailSignFragment();
         fragments.add(fragmentNotice);
         fragments.add(fragmentRank);
         fragments.add(fragmentSign);
+
+//        DetailRankFragment myFragment = new DetailRankFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("DATA",togetherBean);//这里的values就是我们要传的值
+//        myFragment.setArguments(bundle);
+
     }
 
     private void initView() {
         tv_name = findViewById(R.id.tv_name);
         tv_sport = findViewById(R.id.tv_sport);
         tv_time = findViewById(R.id.tv_time);
+        img_profile = findViewById(R.id.img_profile);
 
         detailTabLayout = findViewById(R.id.detailTabLayout);
         detailViewPager = findViewById(R.id.detailViewPager);
@@ -153,6 +176,7 @@ public class CrewDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.e("TAG", "qm handleMessage: onResume ");
         new Thread(new Runnable() {
             @Override
             public void run() {

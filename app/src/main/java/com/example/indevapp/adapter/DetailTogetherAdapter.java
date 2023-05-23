@@ -1,26 +1,27 @@
 package com.example.indevapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.indevapp.R;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
 public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAdapter.TogetherView> {
 
     private Context context;
+    private ArrayList<String> togetherList= new ArrayList<>();
     public DetailTogetherAdapter(Context context) {
         this.context = context;
-
     }
 
     @NonNull
@@ -31,7 +32,39 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DetailTogetherAdapter.TogetherView holder, int position) {
+    public void onBindViewHolder(@NonNull DetailTogetherAdapter.TogetherView holder, @SuppressLint("RecyclerView") int position) {
+        Log.d("TAG", "qm111 333333 item data: "+togetherList+"===position=="+position);
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                FirebaseFirestore db = FirebaseFirestore.getInstance();
+//                DocumentReference docRef = db.collection("User").document(togetherList.get(position));
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                Log.d("TAG", "qm111 item data: " + document.getData());
+//                                HashMap map = (HashMap) document.getData();
+//
+////                                Message msg = Message.obtain();
+////                                Bundle b = new Bundle();
+////                                b.putSerializable("obj", detailTogetherBean);
+////                                msg.setData(b);
+////                                handler.sendMessage(msg);
+//                            } else {
+//                                Log.d("TAG", "No such document");
+//                            }
+//                        } else {
+//                            Log.d("TAG", "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//
+//            }
+//        }).start();
         Glide.with(context)
                 .load("https://www.eatingwell.com/thmb/m5xUzIOmhWSoXZnY-oZcO9SdArQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/article_291139_the-top-10-healthiest-foods-for-kids_-02-4b745e57928c4786a61b47d8ba920058.jpg")
                 .centerCrop()
@@ -76,7 +109,15 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
 
     @Override
     public int getItemCount() {
-        return 0;
+        return togetherList.size();
+    }
+
+    public void addData(ArrayList<String> tgList) {
+        if (null != tgList) {
+            this.togetherList.clear();
+            this.togetherList.addAll(tgList);
+        }
+        notifyDataSetChanged();
     }
 
     public class TogetherView extends RecyclerView.ViewHolder {
