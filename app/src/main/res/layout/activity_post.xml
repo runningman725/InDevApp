@@ -22,50 +22,59 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/layout_title"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/layout_menu"
-        android:layout_height="90dp"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:padding="10dp">
-        <EditText
-            android:id="@+id/edittext_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="게시글 타이틀..."
-            android:enabled="false">
-        </EditText>
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/layout_post"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/layout_title"
-        android:layout_height="200dp"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:padding="10dp">
-        <EditText
-            android:id="@+id/edittext_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:lines="20"
-            android:hint="게시글 내용..."
-            android:enabled="false">
-        </EditText>
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/layout_comment"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/layout_post"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_below="@+id/layout_menu">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/layout_title"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+                <EditText
+                    android:id="@+id/edittext_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="게시글 타이틀..."
+                    android:enabled="false">
+                </EditText>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout_post"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_title"
+                android:orientation="vertical"
+                android:padding="10dp">
+                <EditText
+                    android:id="@+id/edittext_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="20"
+                    android:hint="게시글 내용..."
+                    android:enabled="false">
+                </EditText>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_post"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

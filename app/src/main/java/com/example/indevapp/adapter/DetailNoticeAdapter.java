@@ -2,6 +2,7 @@ package com.example.indevapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -36,11 +37,13 @@ public class DetailNoticeAdapter extends RecyclerView.Adapter<DetailNoticeAdapte
 
     @Override
     public void onBindViewHolder(@NonNull DetailNoticeAdapter.NoticeViewHolder holder, int position) {
-
-        holder.tv_title.setText("제목 " + position);
-        holder.tv_contents.setText("내용" + position);
-        holder.tv_time.setText("2023-05-23");
-        holder.tv_comment_count.setText("댓글 " + position % 5);
+        if (goodsEntityList.get(position).title.equals("Chat GPT Guide") ) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#ecc2c4"));
+        }
+        holder.tv_title.setText(goodsEntityList.get(position).title);
+        holder.tv_contents.setText(goodsEntityList.get(position).contents);
+        holder.tv_time.setText(goodsEntityList.get(position).date);
+        holder.tv_comment_count.setText(goodsEntityList.get(position).comment);
     }
 
     @Override
@@ -61,13 +64,6 @@ public class DetailNoticeAdapter extends RecyclerView.Adapter<DetailNoticeAdapte
             tv_contents = itemView.findViewById(R.id.tv_contents);
             tv_time = itemView.findViewById(R.id.tv_time);
             tv_comment_count = itemView.findViewById(R.id.tv_comment_count);
-
-            /*
-            tv_title.setText(goodsEntityList.get(getAdapterPosition()).getTitle());
-            tv_contents.setText(goodsEntityList.get(getAdapterPosition()).getContents());
-            tv_time.setText(goodsEntityList.get(getAdapterPosition()).getDate());
-            tv_comment_count.setText(goodsEntityList.get(getAdapterPosition()).getComment());
-            */
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

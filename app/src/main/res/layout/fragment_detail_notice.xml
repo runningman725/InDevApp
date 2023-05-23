@@ -28,4 +28,19 @@
         app:backgroundTint="@color/white"
         app:rippleColor="#ffffffff" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabChatGPT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/chatgpt"
+        app:backgroundTint="@color/white"
+        app:rippleColor="#ffffffff" />
+
 </RelativeLayout>
