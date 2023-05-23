@@ -82,6 +82,7 @@
         android:layout_marginBottom="16dp"
         android:contentDescription="add"
         android:src="@drawable/icon_plus_btn"
+        app:backgroundTint="@color/white"
         app:rippleColor="#ffffffff" />
 
 </RelativeLayout>

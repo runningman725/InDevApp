@@ -1,6 +1,7 @@
 package com.example.indevapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.indevapp.R;
+import com.example.indevapp.activity.CrewDetailActivity;
 import com.example.indevapp.bean.GoodsEntity;
 
 import java.util.ArrayList;
@@ -41,6 +43,14 @@ public class MyCrewAdapter extends RecyclerView.Adapter<MyCrewAdapter.ViewHolder
                 .centerCrop()
                 .into(holder.img_crew);
         Log.e("qm", "onBindViewHolder: =-=");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CrewDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

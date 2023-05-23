@@ -19,17 +19,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:theme="@style/Theme.InDevApp"
         tools:targetApi="31">
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.SetupTogetherActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".activity.CreatePostActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".activity.PostActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".activity.CrewDetailActivity"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>

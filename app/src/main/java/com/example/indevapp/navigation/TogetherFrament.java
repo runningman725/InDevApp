@@ -17,12 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.indevapp.R;
+import com.example.indevapp.activity.SetupTogetherActivity;
 import com.example.indevapp.adapter.MyCrewAdapter;
 import com.example.indevapp.adapter.RecommendAdapter;
 import com.example.indevapp.bean.GoodsEntity;
 import com.example.indevapp.util.FilterDialog;
 import com.example.indevapp.util.GridSpacingItemDecoration;
 import com.example.indevapp.util.SpacesItemDecoration;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,7 @@ public class TogetherFrament extends Fragment {
     private ArrayList<GoodsEntity> goodsEntityList = new ArrayList<GoodsEntity>();
     private ImageView iv_filter;
     private FilterDialog filterDialog;
+    private FloatingActionButton fab;
 
     @Nullable
     @Override
@@ -50,6 +53,14 @@ public class TogetherFrament extends Fragment {
     private void initView() {
         initRecyclerView();
         iv_filter = view.findViewById(R.id.iv_filter);
+        fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SetupTogetherActivity.class);
+                startActivity(intent);
+            }
+        });
 
         iv_filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +81,7 @@ public class TogetherFrament extends Fragment {
 
         recommendAdapter=new RecommendAdapter(getActivity(),goodsEntityList);
         rlv_recommend_crew.setLayoutManager(new GridLayoutManager(getActivity(),2));
-//        rlv_recommend_crew.addItemDecoration(new DividerItemDecoration(getContext(),LinearLayoutManager.HORIZONTAL));
+        rlv_recommend_crew.addItemDecoration(new GridSpacingItemDecoration(2,20,false));
         rlv_recommend_crew.setAdapter(recommendAdapter);
     }
 
