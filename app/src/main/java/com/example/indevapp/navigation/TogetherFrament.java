@@ -10,12 +10,18 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.indevapp.R;
 import com.example.indevapp.adapter.MyCrewAdapter;
+import com.example.indevapp.adapter.RecommendAdapter;
 import com.example.indevapp.bean.GoodsEntity;
+import com.example.indevapp.util.FilterDialog;
+import com.example.indevapp.util.GridSpacingItemDecoration;
 import com.example.indevapp.util.SpacesItemDecoration;
 
 import java.util.ArrayList;
@@ -27,8 +33,10 @@ public class TogetherFrament extends Fragment {
     private RecyclerView rlv_recommend_crew;
 
     private MyCrewAdapter myCrewAdapter;
+    private RecommendAdapter recommendAdapter;
     private ArrayList<GoodsEntity> goodsEntityList = new ArrayList<GoodsEntity>();
     private ImageView iv_filter;
+    private FilterDialog filterDialog;
 
     @Nullable
     @Override
@@ -46,7 +54,8 @@ public class TogetherFrament extends Fragment {
         iv_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                filterDialog= new FilterDialog(getActivity());
+                filterDialog.show();
             }
         });
     }
@@ -58,6 +67,11 @@ public class TogetherFrament extends Fragment {
         rlv_my_crew.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL,false));
         rlv_my_crew.addItemDecoration(new SpacesItemDecoration(10));
         rlv_my_crew.setAdapter(myCrewAdapter);
+
+        recommendAdapter=new RecommendAdapter(getActivity(),goodsEntityList);
+        rlv_recommend_crew.setLayoutManager(new GridLayoutManager(getActivity(),2));
+//        rlv_recommend_crew.addItemDecoration(new DividerItemDecoration(getContext(),LinearLayoutManager.HORIZONTAL));
+        rlv_recommend_crew.setAdapter(recommendAdapter);
     }
 
     private void initData() {

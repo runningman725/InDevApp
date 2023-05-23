@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="district">
+        <item>서울</item>
+        <item>인천</item>
+        <item>대구</item>
+        <item>부산</item>
+    </string-array>
+
+    <string-array name="sports">
+        <item>보디빌딩</item>
+        <item>배드민턴</item>
+        <item>스키</item>
+        <item>골프</item>
+    </string-array>
+</resources>
