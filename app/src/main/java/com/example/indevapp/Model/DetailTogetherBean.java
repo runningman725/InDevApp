@@ -1,6 +1,8 @@
 package com.example.indevapp.Model;
 
-public class DetailTogetherBean {
+import java.io.Serializable;
+
+public class DetailTogetherBean implements Serializable {
 
     private String area;
     private String image;
