@@ -45,13 +45,16 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_alignParentLeft="true"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:background="@drawable/item_bg_stroke_black"
+                    android:src="@drawable/inbody_logo" />
 
                 <EditText
+                    android:id="@+id/edittext_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/imageView_profile"
-                    android:text="게시글 타이틀..."></EditText>
+                    android:hint="게시글 타이틀...">
+                </EditText>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/layout_profile"
@@ -68,11 +71,12 @@
                     >
                 </TextView>
                 <EditText
+                    android:id="@+id/edittext_introduce"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/textview_introduce"
                     android:lines="20"
-                    android:text="소개 내용...">
+                    android:hint="투게더 소개 내용...">
                 </EditText>
             </RelativeLayout>
             <RelativeLayout
@@ -100,30 +104,44 @@
             <RelativeLayout
                 android:id="@+id/layout_period"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="230dp"
                 android:layout_below="@+id/layout_area"
                 android:padding="10dp">
+                <TextView
+                    android:id="@+id/textview_period"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="투게더 기간"
+                    >
+                </TextView>
                 <DatePicker
-                    android:id="@+id/datepicker_period"
-                    android:layout_width="170dp"
-                    android:layout_height="match_parent"
+                    android:id="@+id/datepicker_periodStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_below="@+id/textview_period"
                     android:layout_alignParentLeft="true"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
                     >
                 </DatePicker>
                 <TextView
                     android:id="@+id/layout_periodIcon"
                     android:layout_width="10dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:textAlignment="center"
+                    android:layout_below="@+id/datepicker_periodStart"
+                    android:layout_centerHorizontal="true"
                     android:text="～"
                     >
                 </TextView>
                 <DatePicker
-                    android:id="@+id/layout_period2"
-                    android:layout_width="170dp"
-                    android:layout_height="match_parent"
+                    android:id="@+id/datepicker_periodEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
                     android:layout_alignParentRight="true"
+                    android:layout_below="@+id/layout_periodIcon"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
                     >
                 </DatePicker>
             </RelativeLayout>
@@ -151,6 +169,7 @@
                     android:textOff="오전"
                     android:layout_marginRight="10dp"
                     />
+
                 <ToggleButton
                     android:id="@+id/toggleButton_afternoon"
                     android:layout_width="120dp"
@@ -378,7 +397,7 @@
                 android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
                 android:layout_below="@+id/layout_workoutlevel"
-                android:text="Save"
+                android:text="저장"
                 android:onClick="Click_button_save">
             </Button>
         </RelativeLayout>

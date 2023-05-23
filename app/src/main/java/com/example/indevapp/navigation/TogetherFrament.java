@@ -47,6 +47,7 @@ public class TogetherFrament extends Fragment {
         view = inflater.inflate(R.layout.fragment_together,container,false);
         initData();
         initView();
+        initControl();
         return view;
     }
 
@@ -94,4 +95,14 @@ public class TogetherFrament extends Fragment {
         }
     }
 
+    private void initControl() {
+        FloatingActionButton btn_createInBodyTogether = (FloatingActionButton) view.findViewById(R.id.fab);
+        btn_createInBodyTogether.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SetupTogetherActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }

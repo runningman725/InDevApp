@@ -23,8 +23,6 @@ public class CreatePostActivity extends AppCompatActivity {
     }
 
     private void Click_botton_create(View view) {
-        Toast.makeText(this, "Create InBody Together", Toast.LENGTH_SHORT).show();
+
     }
-
-
 }
