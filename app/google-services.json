@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "88536306230",
+    "project_id": "indev-deadlock",
+    "storage_bucket": "indev-deadlock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88536306230:android:fa25aa10252956a4e6be97",
+        "android_client_info": {
+          "package_name": "com.example.indevapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88536306230-4hf0oaqsgffp5jmh370mnuni1scqc8ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm6R3rr4CkmoNzij8KrhAKSBo1MP9iXUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88536306230-4hf0oaqsgffp5jmh370mnuni1scqc8ts.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "88536306230-f30ottgaja8q0b7sr0tqetpo4tlii2rv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.CaliWorkspace.InDev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

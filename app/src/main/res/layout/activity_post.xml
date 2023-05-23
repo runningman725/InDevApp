@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PostActivity">
+
+    <RelativeLayout
+        android:id="@+id/layout_menu"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        >
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/layout_menu"
+        android:layout_height="90dp"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="게시글 타이틀...">
+        </EditText>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layout_post"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/layout_title"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lines="20"
+            android:text="게시글 내용...">
+        </EditText>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layout_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_post"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</RelativeLayout>
