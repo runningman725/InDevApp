@@ -4,16 +4,20 @@ import java.io.Serializable;
 
 public class GoodsEntity implements Serializable {
     public String imgPath;//图片地址
-    public String goodsName;//货物名称
-    public String goodsPrice;//货物价格
+    public String title;//货物名称
+    public String contents;//货物价格
+    public String date;//货物价格
+    public String comment;//货物价格
 
     public GoodsEntity() {
     }
 
-    public GoodsEntity(String imgPath, String goodsName, String goodsPrice) {
+    public GoodsEntity(String imgPath, String title, String contents, String date, String comment) {
         this.imgPath = imgPath;
-        this.goodsName = goodsName;
-        this.goodsPrice = goodsPrice;
+        this.title = title;
+        this.contents = contents;
+        this.date = date;
+        this.comment = comment;
     }
 
     public String getImgPath() {
@@ -24,28 +28,46 @@ public class GoodsEntity implements Serializable {
         this.imgPath = imgPath;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getGoodsPrice() {
-        return goodsPrice;
+    public String getContents() {
+        return contents;
     }
 
-    public void setGoodsPrice(String goodsPrice) {
-        this.goodsPrice = goodsPrice;
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override
     public String toString() {
         return "GoodsEntity{" +
                 "imgPath='" + imgPath + '\'' +
-                ", goodsName='" + goodsName + '\'' +
-                ", goodsPrice='" + goodsPrice + '\'' +
+                ", title='" + title + '\'' +
+                ", contents='" + contents + '\'' +
+                ", date='" + date + '\'' +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }

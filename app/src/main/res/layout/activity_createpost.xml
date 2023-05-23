@@ -33,7 +33,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="게시글 제목 작성...">
+            android:hint="게시글 제목 작성...">
         </EditText>
     </RelativeLayout>
     <RelativeLayout
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:lines="20"
-            android:text="게시글 내용 작성...">
+            android:hint="게시글 내용 작성...">
         </EditText>
     </RelativeLayout>
     <RelativeLayout
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_alignParentBottom="true"
-            android:text="Create"
+            android:text="작성"
             android:onClick="Click_botton_create"/>
     </RelativeLayout>
 </RelativeLayout>

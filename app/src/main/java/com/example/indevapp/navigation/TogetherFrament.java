@@ -89,8 +89,10 @@ public class TogetherFrament extends Fragment {
     private void initData() {
         for (int i=0;i<10;i++){
             GoodsEntity goodsEntity=new GoodsEntity();
-            goodsEntity.setGoodsName("模拟数据"+i);
-            goodsEntity.setGoodsPrice("100"+i);
+            goodsEntity.setTitle("제목 " + i);
+            goodsEntity.setContents("내용 " + i);
+            goodsEntity.setDate("2023-05-24");
+            goodsEntity.setComment("댓글 " + i % 5);
             goodsEntityList.add(goodsEntity);
         }
     }

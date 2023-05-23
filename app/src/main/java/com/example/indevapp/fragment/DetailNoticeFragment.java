@@ -1,6 +1,7 @@
 package com.example.indevapp.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.indevapp.R;
+import com.example.indevapp.activity.CreatePostActivity;
+import com.example.indevapp.activity.SetupTogetherActivity;
 import com.example.indevapp.adapter.DetailNoticeAdapter;
 import com.example.indevapp.bean.GoodsEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,14 +38,17 @@ public class DetailNoticeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_detail_notice,container,false);
         initData();
         iniView();
+        initControl();
         return view;
     }
 
     private void initData() {
         for (int i=0;i<10;i++){
             GoodsEntity goodsEntity=new GoodsEntity();
-            goodsEntity.setGoodsName("模拟数据"+i);
-            goodsEntity.setGoodsPrice("100"+i);
+            goodsEntity.setTitle("제목 " + i);
+            goodsEntity.setContents("내용 " + i);
+            goodsEntity.setDate("2023-05-24");
+            goodsEntity.setComment("댓글 " + i % 5);
             goodsEntityList.add(goodsEntity);
         }
     }
@@ -56,5 +62,16 @@ public class DetailNoticeFragment extends Fragment {
         rlv_notes.setLayoutManager(linearLayoutManager);
         rlv_notes.setAdapter(noticeAdapter);
 
+    }
+
+    private void initControl() {
+        FloatingActionButton btn_createInBodyTogether = (FloatingActionButton) view.findViewById(R.id.fab);
+        btn_createInBodyTogether.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CreatePostActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
