@@ -66,4 +66,17 @@ public class DetailTogetherUserBean implements Serializable {
     public void setPbfChange(double pbfChange) {
         this.pbfChange = pbfChange;
     }
+
+    @Override
+    public String toString() {
+        return "DetailTogetherUserBean{" +
+                "uid='" + uid + '\'' +
+                ", smmChange=" + smmChange +
+                ", sex='" + sex + '\'' +
+                ", weightChange=" + weightChange +
+                ", age=" + age +
+                ", pbfChange=" + pbfChange +
+                ", height=" + height +
+                '}';
+    }
 }

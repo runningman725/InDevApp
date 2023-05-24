@@ -43,7 +43,6 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.Reco
                 .centerCrop()
                 .into(holder.img_crew);
 
-        Log.e("qm", "onBindViewHolder: =-=");
         ViewGroup.LayoutParams lp = holder.img_crew.getLayoutParams();
         int width = context.getResources().getDisplayMetrics().widthPixels;
         lp.width = width/2-30;

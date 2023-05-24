@@ -76,7 +76,6 @@ public class CrewDetailActivity extends AppCompatActivity {
                     .into(img_profile);
 
 //            DetailRankFragment.newInstance(togetherBean);
-            Log.e("TAG", "qm handleMessage: eventbus send msg");
             EventBus.getDefault().post(new DetailRankEvent(togetherBean.getTogetherList()));
             return false;
         }
@@ -100,11 +99,6 @@ public class CrewDetailActivity extends AppCompatActivity {
         fragments.add(fragmentNotice);
         fragments.add(fragmentRank);
         fragments.add(fragmentSign);
-
-//        DetailRankFragment myFragment = new DetailRankFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("DATA",togetherBean);//这里的values就是我们要传的值
-//        myFragment.setArguments(bundle);
 
     }
 
@@ -148,16 +142,6 @@ public class CrewDetailActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
-//                Fragment fragment = null;
-//                if (pos == 0) {
-//                    fragment = fragmentNotice;
-//                } else if (pos == 1) {
-//                    fragment = fragmentRank;
-//                } else if(pos == 2){
-//                    fragment = fragmentSign;
-//                }
-//                getSupportFragmentManager().beginTransaction().add(R.id.)
-                Log.e("qm", "onTabSelected: ===" + pos);
                 detailViewPager.setCurrentItem(pos);
             }
 
@@ -176,7 +160,6 @@ public class CrewDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("TAG", "qm handleMessage: onResume ");
         new Thread(new Runnable() {
             @Override
             public void run() {

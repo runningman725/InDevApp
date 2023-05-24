@@ -40,17 +40,7 @@ public class DetailRankFragment extends Fragment {
     private SwitchCompat switch_compat;
     private Fragment fragment;
 
-    private DetailTogetherBean bean;
     private String togetherList;
-
-    public static DetailRankFragment newInstance(DetailTogetherBean bean){
-        Log.e("tag", "qm 333 44444: "+bean);
-        DetailRankFragment myFragment = new DetailRankFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("bean",bean);
-        myFragment.setArguments(bundle);
-        return myFragment;
-    }
 
     @Subscribe(sticky = true)
     public void onEventMainThread(DetailRankEvent event) {
@@ -63,12 +53,6 @@ public class DetailRankFragment extends Fragment {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
 
-        Bundle bundle = getArguments();
-        if (bundle != null){
-            bean = (DetailTogetherBean) bundle.getSerializable("DATA");
-
-            Log.e("tag", "qm 333 onCheckedChanged: "+bean.getTogetherList());
-        }
     }
 
     @SuppressLint("MissingInflatedId")
@@ -87,8 +71,7 @@ public class DetailRankFragment extends Fragment {
             fm.popBackStack();
             transaction.commit();
         }
-//        fragment= new DetailTogetherFragment();
-//        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment);
+
         if (fragment == null) {
             getActivity().getSupportFragmentManager().beginTransaction().add(R.id.framelayout,new DetailTogetherFragment()).commit();
         }

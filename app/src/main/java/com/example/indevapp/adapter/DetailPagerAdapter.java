@@ -16,7 +16,6 @@ public class DetailPagerAdapter extends FragmentStatePagerAdapter {
 
     public DetailPagerAdapter(@NonNull FragmentManager fm, ArrayList<Fragment> fragments) {
         super(fm);
-        Log.e("qm", "DetailPagerAdapter: ===");
         this.fragments = fragments;
     }
 

@@ -43,8 +43,6 @@ public class MyCrewAdapter extends RecyclerView.Adapter<MyCrewAdapter.ViewHolder
                 .centerCrop()
                 .into(holder.img_crew);
 
-        Log.e("qm", "onBindViewHolder: =-=");
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

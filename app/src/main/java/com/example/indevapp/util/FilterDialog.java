@@ -2,8 +2,12 @@ package com.example.indevapp.util;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -18,6 +22,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.example.indevapp.R;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FilterDialog extends AlertDialog {
 
@@ -62,27 +69,20 @@ public class FilterDialog extends AlertDialog {
         sp_district.setSelection(-1,true);
 
         String[] district = context.getResources().getStringArray(R.array.district);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item, district);
+        List<String> list = new ArrayList<String>();
+        for(int i=0; i<district.length; i++) {
+            list.add(i, district[i]);
+        }
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_district.setAdapter(adapter);
-        sp_district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                String[] district = context.getResources().getStringArray(R.array.district);
-                String cardNumber = sp_district.getSelectedItem().toString();
-                Toast.makeText(getContext(), "你点击的是:"+cardNumber, Toast.LENGTH_LONG).show();
-                sp_district.setSelection(pos);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
-            }
-        });
+
+        tv_starttime.setOnClickListener(new OnDatePickListener(tv_starttime));
+        tv_endtime.setOnClickListener(new OnDatePickListener(tv_endtime));
 
         cb_morning.setOnCheckedChangeListener(new TimeCheckListener());
         cb_afternoon.setOnCheckedChangeListener(new TimeCheckListener());
         cb_night.setOnCheckedChangeListener(new TimeCheckListener());
-
 
         tv_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +93,33 @@ public class FilterDialog extends AlertDialog {
 
     }
 
+    private class OnDatePickListener implements View.OnClickListener {
+
+        private TextView view;
+
+        public OnDatePickListener(TextView view) {
+            this.view =view;
+        }
+
+        @Override
+        public void onClick(View v) {
+            DatePickerDialog datePickerDialog= new DatePickerDialog(context);
+            datePickerDialog.setOnSelectedDateListener(new DatePickerDialog.OnSelectedDateListener() {
+                @Override
+                public void onSelectedDate(int year, int monthOfYear, int dayOfMonth) {
+                    view.setText(year+"/"+monthOfYear+"/"+dayOfMonth);
+                }
+            });
+            datePickerDialog.show();
+            //放在show()之后，不然有些属性是没有效果的，比如height和width
+            Window dialogWindow = datePickerDialog.getWindow();
+            WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+            // 设置宽度
+            p.gravity = Gravity.CENTER;//设置位置
+            //p.alpha = 0.8f;//设置透明度
+            dialogWindow.setAttributes(p);
+        }
+    }
 
     private class TimeCheckListener implements CompoundButton.OnCheckedChangeListener {
         @Override

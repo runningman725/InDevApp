@@ -17,7 +17,8 @@
             android:id="@+id/iv_user"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_crew_user"/>
 
         <TextView
             android:id="@+id/tv_user"
@@ -84,10 +85,10 @@
 
                         <ImageView
                             android:id="@+id/iv_weight_minus"
-                            android:layout_width="30dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentRight="true"
-                            android:background="#f00"/>
+                            android:background="#F25C75" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -100,7 +101,7 @@
                             android:layout_width="70dp"
                             android:layout_height="7dp"
                             android:layout_alignParentLeft="true"
-                            android:background="#0f0"/>
+                            android:background="#47B998"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -162,7 +163,7 @@
                             android:layout_width="30dp"
                             android:layout_height="7dp"
                             android:layout_alignParentRight="true"
-                            android:background="#f00"/>
+                            android:background="#F25C75"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -172,10 +173,10 @@
 
                         <ImageView
                             android:id="@+id/iv_rate_plus"
-                            android:layout_width="70dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentLeft="true"
-                            android:background="#0f0"/>
+                            android:background="#47B998"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -235,10 +236,10 @@
 
                         <ImageView
                             android:id="@+id/iv_muscle_minus"
-                            android:layout_width="30dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentRight="true"
-                            android:background="#f00"/>
+                            android:background="#F25C75" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -248,10 +249,10 @@
 
                         <ImageView
                             android:id="@+id/iv_muscle_plus"
-                            android:layout_width="70dp"
+                            android:layout_width="50dp"
                             android:layout_height="7dp"
                             android:layout_alignParentLeft="true"
-                            android:background="#0f0"/>
+                            android:background="#47B998"/>
 
                     </RelativeLayout>
                 </LinearLayout>
