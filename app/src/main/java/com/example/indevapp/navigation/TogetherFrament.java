@@ -93,7 +93,6 @@ public class TogetherFrament extends Fragment {
     }
 
     private void initRecyclerView() {
-        Log.e("TAG", "initRecyclerView");
         for (int i=0;i<4;i++) {
             goodsEntityList.add(totalGoodsEntityList.get(i));
         }

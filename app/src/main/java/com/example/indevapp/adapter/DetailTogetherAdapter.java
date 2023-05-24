@@ -50,7 +50,6 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
 
     @Override
     public void onBindViewHolder(@NonNull DetailTogetherAdapter.TogetherView holder, @SuppressLint("RecyclerView") int position) {
-        Log.d("TAG", "qm111 333333 item data: " + togetherList + "===position==" + position);
         this.holder = holder;
         new Thread(new Runnable() {
             @Override
@@ -63,7 +62,6 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                Log.d("TAG", "qm111 item data: " + document.getData());
                                 HashMap map = (HashMap) document.getData();
 
                                 bean = new DetailTogetherUserBean();
@@ -128,7 +126,6 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
     }
 
     public void addData(ArrayList<String> tgList) {
-        Log.e("TAG", "addData: tgList==" + tgList);
         if (null != tgList) {
             this.togetherList.clear();
             this.togetherList.addAll(tgList);
