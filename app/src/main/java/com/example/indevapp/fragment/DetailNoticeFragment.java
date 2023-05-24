@@ -44,7 +44,7 @@ public class DetailNoticeFragment extends Fragment {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
 
-    private static final String MY_SECRET_KEY = "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";
+    private static final String MY_SECRET_KEY = "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";
 
     private RecyclerView rlv_notes;
     private FloatingActionButton fab;
@@ -124,6 +124,7 @@ public class DetailNoticeFragment extends Fragment {
             public void onClick(View view) {
                 //String question = "평균 신장 173cm 평균 몸무게 70kg인 사람들이 지방량 -2kg, 근육량 +1kg 를 위해 일주일간 어떤 운동을 하면 될까? 현재 달성률은  20%. 3일간의 운동 세트 수와 시간을 알려줘";
                 String question = "What kind of exercise can people with an average height of 173cm and an average weight of 70kg do for a week to lose fat mass -2kg and muscle mass +1kg?";
+                //String question = "평균 신장 173cm 평균 몸무게 70kg인 사람들이 지방량 -2kg, 근육량 +1kg 를 위해 일주일간 어떤 운동을 하면 될까?";
                 callAPI(question);
             }
         });

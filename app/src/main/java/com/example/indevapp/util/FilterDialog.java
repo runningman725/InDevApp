@@ -79,6 +79,19 @@ public class FilterDialog extends AlertDialog {
 
         tv_starttime.setOnClickListener(new OnDatePickListener(tv_starttime));
         tv_endtime.setOnClickListener(new OnDatePickListener(tv_endtime));
+//        sp_district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+//                String[] district = context.getResources().getStringArray(R.array.district);
+//                String cardNumber = sp_district.getSelectedItem().toString();
+//                Toast.makeText(getContext(), "你点击的是:"+cardNumber + pos, Toast.LENGTH_LONG).show();
+//                sp_district.setSelection(pos);
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // Another interface callback
+//            }
+//        });
 
         cb_morning.setOnCheckedChangeListener(new TimeCheckListener());
         cb_afternoon.setOnCheckedChangeListener(new TimeCheckListener());

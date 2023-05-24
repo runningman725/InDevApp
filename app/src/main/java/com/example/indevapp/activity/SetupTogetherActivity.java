@@ -2,6 +2,7 @@ package com.example.indevapp.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -11,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -63,6 +65,18 @@ public class SetupTogetherActivity extends AppCompatActivity {
         spinnerPersonArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // 스피너에 어답터를 연결
         spinnerPerson.setAdapter(spinnerPersonArrayAdapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home : {
+                finish();
+                return  true;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void Click_button_save(View view) {

@@ -24,16 +24,20 @@ import com.example.indevapp.DetailRankEvent;
 import com.example.indevapp.Model.DetailTogetherUserBean;
 import com.example.indevapp.R;
 import com.example.indevapp.adapter.DetailTogetherAdapter;
+import com.example.indevapp.bean.GoodsEntity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DetailTogetherFragment extends Fragment {
@@ -44,6 +48,8 @@ public class DetailTogetherFragment extends Fragment {
     private String together="";
     private ArrayList<String> tgList;
     private SharedPreferences.Editor editor;
+
+    private ArrayList<DetailTogetherUserBean> detailTogetherUserBean = new ArrayList<DetailTogetherUserBean>();
 
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -62,6 +68,35 @@ public class DetailTogetherFragment extends Fragment {
 //        if (bundle != null) {
 //            togetherList = bundle.getString("togetherList");
 //        }
+        DataInit();
+    }
+
+    private void DataInit() {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("User").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        HashMap map = (HashMap) document.getData();
+                        DetailTogetherUserBean bean = new DetailTogetherUserBean();
+                        bean.setUid(map.get("uid") == null ? "" : (String) map.get("uid"));
+                        bean.setSmmChange(map.get("smmChange") == null ? 0.0 : (double) map.get("smmChange"));
+                        bean.setSex(map.get("sex") == null ? "" : (String) map.get("sex"));
+                        bean.setWeightChange(map.get("weightChange") == null ? 0.0 : (double) map.get("weightChange"));
+                        bean.setAge(map.get("age") == null ? 0.0 : (double) map.get("age"));
+                        bean.setPbfChange(map.get("pbfChange") == null ? 0.0 : (double) map.get("pbfChange"));
+                        bean.setHeight(map.get("height") == null ? 0.0 : (double) map.get("height"));
+
+                        detailTogetherUserBean.add((bean));
+                        Log.e("TAG", bean.getUid() + ", " + bean.getWeightChange());
+                    }
+                    adapter.addData(detailTogetherUserBean);
+                }
+                //
+
+            }
+        });
     }
 
     @SuppressLint("MissingInflatedId")
@@ -70,23 +105,33 @@ public class DetailTogetherFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail_together, container, false);
         rlv_together = view.findViewById(R.id.rlv_together);
-        EventBus.getDefault().register(this);
-        SharedPreferences sp= getActivity().getSharedPreferences("IB",Activity.MODE_PRIVATE);
-        String togetherList = sp.getString(TGLIST,"");
+        //EventBus.getDefault().register(this);
 
+        //SharedPreferences sp= getActivity().getSharedPreferences("IB",Activity.MODE_PRIVATE);
+
+        //String togetherList = sp.getString(TGLIST,"");
+
+        /*
         tgList = new ArrayList<>();
         for (String member: togetherList.split(",")){
             tgList.add(member);
         }
-        adapter = new DetailTogetherAdapter(getActivity(),handler);
+         */
+
         rlv_together.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL,false));
+
+        adapter = new DetailTogetherAdapter(getActivity(), handler);
         rlv_together.setAdapter(adapter);
+        /*
         if(!TextUtils.isEmpty(togetherList)){
             adapter.addData(tgList);
         }
+
+         */
         return view;
     }
 
+    /*
     @Subscribe(sticky = true)
     public void onEventMainThread(DetailRankEvent event) {
         together = event.getTogetherList();
@@ -99,6 +144,8 @@ public class DetailTogetherFragment extends Fragment {
         adapter.addData(tgList);
 
     }
+
+     */
 
     @Override
     public void onDestroyView() {

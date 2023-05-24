@@ -22,6 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ import java.util.HashMap;
 public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAdapter.TogetherView> {
 
     private Context context;
-    private ArrayList<String> togetherList = new ArrayList<>();
+    private ArrayList<DetailTogetherUserBean> togetherList = new ArrayList<>();
 
     private DetailTogetherUserBean bean;
     private Handler handler;
@@ -51,6 +53,39 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
     @Override
     public void onBindViewHolder(@NonNull DetailTogetherAdapter.TogetherView holder, @SuppressLint("RecyclerView") int position) {
         this.holder = holder;
+
+        setData(togetherList.get(position));
+
+        /*
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Together").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    Bundle b = new Bundle();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.e("TAG", "111111");
+                        HashMap map = (HashMap) document.getData();
+                        bean = new DetailTogetherUserBean();
+                        bean.setUid(map.get("uid") == null ? "" : (String) map.get("uid"));
+                        bean.setSmmChange(map.get("smmChange") == null ? 0.0 : (double) map.get("smmChange"));
+                        bean.setSex(map.get("sex") == null ? "" : (String) map.get("sex"));
+                        bean.setWeightChange(map.get("weightChange") == null ? 0.0 : (double) map.get("weightChange"));
+                        bean.setAge(map.get("age") == null ? 0.0 : (double) map.get("age"));
+                        bean.setPbfChange(map.get("pbfChange") == null ? 0.0 : (double) map.get("pbfChange"));
+                        bean.setHeight(map.get("height") == null ? 0.0 : (double) map.get("height"));
+                    }
+
+                    Message msg = Message.obtain();
+                    b.putSerializable("bean", bean);
+                    msg.setData(b);
+                    handler.sendMessage(msg);
+                }
+            }
+        });
+
+         */
+
+        /*
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -60,8 +95,19 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                            }
+
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
+<<<<<<< HEAD
+=======
+                                Log.d("TAG", "qm111 item data: " + document.getData());
+
+
+
+>>>>>>> 0425cf83ebda7a8c85934f5a5c5216104f6473fb
                                 HashMap map = (HashMap) document.getData();
 
                                 bean = new DetailTogetherUserBean();
@@ -90,29 +136,33 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
             }
         }).start();
 
+
+         */
     }
 
     private void minusDataFunc(ImageView imageView, double minus) {
         ViewGroup.LayoutParams lp = imageView.getLayoutParams();
-        lp.width = (int) (minus * ConvertDPtoPX(context, 100) / 10);
+        lp.width = (int) (minus * ConvertDPtoPX(context, 100) / 3);
+        Log.e("LEngth", lp.width + "");
         imageView.setLayoutParams(lp);
     }
 
     private void plusDataFunc(ImageView imageView, double plus) {
         ViewGroup.LayoutParams lp = imageView.getLayoutParams();
-        lp.width = (int) (plus * ConvertDPtoPX(context, 100) / 10);
+        lp.width = (int) (plus * ConvertDPtoPX(context, 100) / 3);
+        Log.e("LEngth", lp.width + "");
         imageView.setLayoutParams(lp);
     }
 
     public static int ConvertDPtoPX(Context context, int dp) {
-        float density = context.getResources().getDisplayMetrics().density;
-        return Math.round((float) dp * density);
+            float density = context.getResources().getDisplayMetrics().density;
+            return Math.round((float) dp * density);
     }
 
     public double changeTwoDigit(double val) {
         BigDecimal b = new BigDecimal(val);
         //保留2位小数
-        double f1 = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        double f1 = b.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
         return f1;
     }
 
@@ -125,7 +175,7 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
         }
     }
 
-    public void addData(ArrayList<String> tgList) {
+    public void addData(ArrayList<DetailTogetherUserBean> tgList) {
         if (null != tgList) {
             this.togetherList.clear();
             this.togetherList.addAll(tgList);
@@ -134,11 +184,10 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
     }
 
     public void setData(DetailTogetherUserBean bean) {
-
-        Glide.with(context)
-                .load("https://www.eatingwell.com/thmb/m5xUzIOmhWSoXZnY-oZcO9SdArQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/article_291139_the-top-10-healthiest-foods-for-kids_-02-4b745e57928c4786a61b47d8ba920058.jpg")
-                .centerCrop()
-                .into(holder.iv_user);
+//        Glide.with(context)
+//                .load("https://www.eatingwell.com/thmb/m5xUzIOmhWSoXZnY-oZcO9SdArQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/article_291139_the-top-10-healthiest-foods-for-kids_-02-4b745e57928c4786a61b47d8ba920058.jpg")
+//                .centerCrop()
+//                .into(holder.iv_user);
         holder.tv_user.setText(bean.getUid());
 
         double weightDouble = changeTwoDigit(bean.getWeightChange());
@@ -149,6 +198,7 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
         holder.tv_weight_rate.setText(String.valueOf(weightRate));
         holder.tv_weight_muscle.setText(String.valueOf(weightMuscle));
 
+        /*
         double weightMinus = weightDouble; //데이터 api에서 획득하여 추가,절대치
         double weightPlus = 0;
         double rateMinus = 0;
@@ -156,22 +206,24 @@ public class DetailTogetherAdapter extends RecyclerView.Adapter<DetailTogetherAd
         double muscleMinus = 0;
         double musclePluls = 0;
 
+         */
+
         if (weightDouble < 0) {
-            minusDataFunc(holder.iv_weight_minus, weightMinus);
+            minusDataFunc(holder.iv_weight_minus, weightDouble);
         } else {
-            plusDataFunc(holder.iv_weight_plus, weightPlus);
+            plusDataFunc(holder.iv_weight_plus, weightDouble);
         }
 
         if (weightRate < 0) {
-            minusDataFunc(holder.iv_rate_minus, rateMinus);
+            minusDataFunc(holder.iv_rate_minus, weightRate);
         } else {
-            plusDataFunc(holder.iv_rate_plus, ratePlus);
+            plusDataFunc(holder.iv_rate_plus, weightRate);
         }
 
         if (weightMuscle < 0) {
-            minusDataFunc(holder.iv_muscle_minus, muscleMinus);
+            minusDataFunc(holder.iv_muscle_minus, weightMuscle);
         } else {
-            plusDataFunc(holder.iv_muscle_plus, musclePluls);
+            plusDataFunc(holder.iv_muscle_plus, weightMuscle);
         }
 
     }

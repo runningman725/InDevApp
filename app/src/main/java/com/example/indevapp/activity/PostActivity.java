@@ -2,8 +2,10 @@ package com.example.indevapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -32,5 +34,17 @@ public class PostActivity extends AppCompatActivity {
         EditText edittext_content = findViewById(R.id.edittext_content);
         edittext_title.setText(title);
         edittext_content.setText(content);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home : {
+                finish();
+                return  true;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
