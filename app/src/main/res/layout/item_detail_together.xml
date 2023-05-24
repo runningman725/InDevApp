@@ -84,7 +84,7 @@
 
                         <ImageView
                             android:id="@+id/iv_weight_minus"
-                            android:layout_width="30dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentRight="true"
                             android:background="#f00"/>
@@ -97,7 +97,7 @@
 
                         <ImageView
                             android:id="@+id/iv_weight_plus"
-                            android:layout_width="70dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentLeft="true"
                             android:background="#0f0"/>
@@ -159,7 +159,7 @@
 
                         <ImageView
                             android:id="@+id/iv_rate_minus"
-                            android:layout_width="30dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentRight="true"
                             android:background="#f00"/>
@@ -167,15 +167,15 @@
 
                     <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/iv_rate_plus"
-                            android:layout_width="70dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentLeft="true"
-                            android:background="#0f0"/>
+                            android:background="#0f0" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -235,7 +235,7 @@
 
                         <ImageView
                             android:id="@+id/iv_muscle_minus"
-                            android:layout_width="30dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentRight="true"
                             android:background="#f00"/>
@@ -248,7 +248,7 @@
 
                         <ImageView
                             android:id="@+id/iv_muscle_plus"
-                            android:layout_width="70dp"
+                            android:layout_width="0dp"
                             android:layout_height="7dp"
                             android:layout_alignParentLeft="true"
                             android:background="#0f0"/>

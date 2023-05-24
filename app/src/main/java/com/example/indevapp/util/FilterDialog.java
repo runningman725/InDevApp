@@ -70,7 +70,7 @@ public class FilterDialog extends AlertDialog {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String[] district = context.getResources().getStringArray(R.array.district);
                 String cardNumber = sp_district.getSelectedItem().toString();
-                Toast.makeText(getContext(), "你点击的是:"+cardNumber, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "你点击的是:"+cardNumber + pos, Toast.LENGTH_LONG).show();
                 sp_district.setSelection(pos);
             }
             @Override
