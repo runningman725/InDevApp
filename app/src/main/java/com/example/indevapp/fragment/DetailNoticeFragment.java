@@ -44,7 +44,7 @@ public class DetailNoticeFragment extends Fragment {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
 
-    private static final String MY_SECRET_KEY = "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";
+    private static final String MY_SECRET_KEY = "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";
 
     private RecyclerView rlv_notes;
     private FloatingActionButton fab;
